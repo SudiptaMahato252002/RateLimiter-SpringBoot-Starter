@@ -33,6 +33,11 @@ public class RateLimiterService
 
     }
 
+    public RateLimiterResult allowRequestTokenBucket()
+    {
+        return RateLimiterResult.builder().build();
+    }
+
     public RateLimiterResult getState(String key,long limit,long windowSeconds,RateLimiterAlgorithm algorithm)
     {
         if(!properties.isEnabled())
