@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AutoConfiguration
 @ConditionalOnClass(RedisTemplate.class)
-@ConditionalOnProperty( prefix="rate-limiter", name="enbaled",havingValue = "true",matchIfMissing = true)
+@ConditionalOnProperty( prefix="rate-limiter", name="enabled",havingValue = "true",matchIfMissing = true)
 @EnableConfigurationProperties(RateLimiterProperties.class)
 @Import({RedisConfig.class})
 public class RateLimiterAutoConfiguration 
@@ -29,14 +29,14 @@ public class RateLimiterAutoConfiguration
     }
 
     @Bean
-    public FixedWindowAlgorithm fixedWindowAlgorithm(RedisTemplate<String,Object> redisTemplate)
+    public FixedWindowAlgorithm fixedWindowRateLimiter(RedisTemplate<String,Object> redisTemplate)
     {
         log.debug("Initializing Fixed Window Rate Limiter");
         return new FixedWindowAlgorithm(redisTemplate);
     }
 
     @Bean
-    public TokenBucketAlgorithm tokenBucketAlgorithm(RedisTemplate<String,Object> redisTemplate)
+    public TokenBucketAlgorithm tokenBucketRateLimiter(RedisTemplate<String,Object> redisTemplate)
     {
         log.debug("Initializing Token Bucket Rate Limiter");
         return new TokenBucketAlgorithm(redisTemplate);

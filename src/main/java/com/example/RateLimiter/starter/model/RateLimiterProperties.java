@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 @Data
-@ConfigurationProperties(prefix = "rate-limiter:")
+@ConfigurationProperties(prefix = "rate-limiter")
 public class RateLimiterProperties 
 {
     private boolean enabled=true;
@@ -22,8 +22,8 @@ public class RateLimiterProperties
     @Data
     public static class Redis
     {
-        private String host;
-        private int port;
+        private String host="localhost";
+        private int port=6379;
         private String password;
         private int database=0;
         private int maxConnections=0;
@@ -36,9 +36,9 @@ public class RateLimiterProperties
     public static class Defaults
     {
 
-        private long window=100;
+        private long limit=100;
 
-        private long limit=60;
+        private long windowSeconds=60;
         
         private double refillRate=10.0;
     }

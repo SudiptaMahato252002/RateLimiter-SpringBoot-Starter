@@ -11,6 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @RequiredArgsConstructor
+@Component
 public class RateLimitAspect 
 {
     private final RateLimiterService service;
