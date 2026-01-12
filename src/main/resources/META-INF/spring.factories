@@ -1,2 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.example.RateLimiter.starter.config.RateLimiterAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.RateLimiter.starter.config.RateLimiterAutoConfiguration
 

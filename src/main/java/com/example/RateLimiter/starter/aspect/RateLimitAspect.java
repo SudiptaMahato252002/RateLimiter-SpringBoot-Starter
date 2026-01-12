@@ -3,7 +3,6 @@ package com.example.RateLimiter.starter.aspect;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

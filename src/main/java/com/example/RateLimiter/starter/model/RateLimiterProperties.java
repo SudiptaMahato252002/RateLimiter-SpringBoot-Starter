@@ -1,11 +1,13 @@
 package com.example.RateLimiter.starter.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
 @Data
 @ConfigurationProperties(prefix = "rate-limiter")
+@Component
 public class RateLimiterProperties 
 {
     private boolean enabled=true;
