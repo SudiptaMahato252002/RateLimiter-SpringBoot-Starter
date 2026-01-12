@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>RateLimiter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>RateLimiter</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -101,6 +102,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>
