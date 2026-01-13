@@ -27,12 +27,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Aspect
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Component
 public class RateLimitAspect 
 {
     private final RateLimiterService service;
     private final ExpressionParser parser = new SpelExpressionParser();
+
+    public RateLimitAspect(RateLimiterService service) {
+        this.service = service;
+        log.info("🎯🎯🎯 RateLimitAspect CREATED! Aspect is working!");
+    }
 
     @Around("@annotation(com.example.RateLimiter.starter.annotation.RateLimit)")
     public Object rateLimit(ProceedingJoinPoint joinPoint) throws Throwable
@@ -43,17 +48,19 @@ public class RateLimitAspect
         RateLimit rateLimit=method.getAnnotation(RateLimit.class);
 
         String key=buildKey(rateLimit, joinPoint);
+        log.info("🔑 Built key: {}", key);
         RateLimiterResult result;
 
         if(rateLimit.algorithm()==RateLimiterAlgorithm.FIXED_WINDOW)
         {
+            log.info("📊 Using FIXED_WINDOW algorithm");
             result=service.allowRequest(key, rateLimit.limit(), rateLimit.windowSeconds(),rateLimit.algorithm());
         }
         else
         {
             result=service.allowRequestTokenBucket();
         }
-
+        log.info("✅ Result: allowed={}, remaining={}", result.isAllowed(), result.getRemaining());
         addRateLimitHeaders(result);
 
         if (!result.isAllowed()) {
